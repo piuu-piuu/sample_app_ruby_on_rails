@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    style @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;500&display=swap');
+
+    title 
+      = full_title(yield(:title))  
+    
+    meta charset="utf-8"
+
+    = render 'layouts/rails_default'
+    = render 'layouts/shim'
+  
+
+  body
+    = render 'layouts/header'
+    div class="container"
+      - flash.each do |message_type, message|
+        div class="alert alert-danger"
+          = message_type
+          = message
+      end
+
+      == yield
+    
+      = render 'layouts/footer'
+      = debug(params) if Rails.env.development?
+    
